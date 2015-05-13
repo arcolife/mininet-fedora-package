@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd ~/mininet-2.2.1/rpm/
+
+rm -rf ~/rpmbuild/*/*
+
+cp ~/2.2.1.tar.gz ~/rpmbuild/SOURCES/2.2.1.tar.gz
+rpmbuild -ba python-mininet.spec
+
+cd ~/
+rm -rf ~/review-python-mininet/
+cp ~/rpmbuild/SRPMS/python-mininet-2.2.1-1none.src.rpm ~/
+cp ~/mininet-2.2.1/rpm/python-mininet.spec ~/
+fedora-review -n python-mininet
